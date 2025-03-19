@@ -1,58 +1,178 @@
-# Django E-commerce Platform
+# 🏗️ Project Architecture Overview
 
-A comprehensive e-commerce solution built with Django, featuring robust architecture, advanced features, and optimized performance.
+## 1. Market App (Main E-commerce Logic)
 
-## 🚀 Features
+### Models and Database Structure
+- **Product System**
+  - Products with detailed attributes (title, price, inventory, etc.)
+  - Product images with file size validation
+  - Collections and categories management
+  - Product reviews and ratings
+  - Promotions and discounts
 
-### 🛒 E-commerce Core (Market App)
-- **Product Management**: Categories, collections, reviews, ratings, and promotions
-- **Cart System**: UUID-based identification with anonymous support
-- **Order Processing**: Status tracking and item management
-- **Customer Profiles**: Tiered membership system with order history
+- **Cart System**
+  - UUID-based cart identification
+  - Cart items with quantity validation
+  - Cart persistence
+  - Anonymous cart support
 
-### 🔐 Authentication & User Management
-- Custom user model with JWT authentication
-- Role-based access control
-- Permission-based API security
+- **Order System**
+  - Order processing and status tracking
+  - Order items management
+  - Payment status tracking (Pending, Complete, Failed)
 
-### 💾 Data & Media
-- Secure file handling with validation
-- Custom storage configuration
-- Image upload with size restrictions
+- **Customer Management**
+  - Customer profiles
+  - Membership levels (Bronze, Silver, Gold)
+  - Address management
+  - Order history
 
-### 🔧 API Features
-- Class-Based Views (CBVs) with ModelViewSets
+### API Endpoints & Views
+- All views implemented using Class-Based Views (CBVs)
+- ModelViewSets for CRUD operations
+- Custom permission classes
 - Filtering, sorting, and pagination
 - Nested serialization
-- CORS configuration and rate limiting
 
-### ⚡ Performance
-- Redis caching system
-- Celery task queue for background processing
-- Load testing with Locust
-- Performance profiling with Silk
+### Permissions System
+- Custom permission classes
+  - `IsAdminOrReadOnly`
+  - `ViewCustomerHistoryPermission`
+  - Role-based access control
 
-### 📊 Admin Interface
+## 2. Core App (Authentication & User Management)
+
+### User Management
+- Custom user creation/serialization
+- JWT authentication with refresh tokens
+- User profile management
+- Custom user serializers
+
+### Signals
+- Order creation signals
+- Customer profile signals
+- Email notification signals
+
+## 3. Media Management
+
+### File Handling
+- Custom file storage configuration
+- Image upload and validation
+- File size restrictions
+- Secure file serving
+
+### Media Settings
+- Configured media roots and URLs
+- File type restrictions
+- Storage backend configuration
+
+## 4. Performance Testing & Monitoring
+
+### Locust Load Testing
+- Simulated user behavior
+- Product browsing scenarios
+- Cart operations testing
+- Authentication flow testing
+- Performance metrics collection
+
+### Silk Profiling (Configured but Commented)
+- Request profiling
+- Database query analysis
+- Performance bottleneck identification
+- Response time monitoring
+
+## 5. Caching & Performance
+
+### Redis Cache
+
+### Celery Task Queue
+- Asynchronous task processing
+- Scheduled tasks with Celery Beat
+- Email notifications
+- Order processing
+
+## 6. API Features
+
+### Authentication & Security
+- JWT token authentication
+- Token refresh mechanism
+- CORS configuration
+- API rate limiting
+
+### Data Filtering & Search
+- Django Filter backend
+- Search functionality
+- Dynamic filtering
+- Custom filter classes
+
+### Pagination
+- Limit-offset pagination
+- Configurable page size
+- Custom pagination classes
+
+## 7. Testing Infrastructure
+
+### Unit Tests
+- Model testing
+- View testing
+- Serializer testing
+- Permission testing
+
+### Integration Tests
+- API endpoint testing
+- Authentication flow testing
+- Order process testing
+- Cart functionality testing
+
+## 8. Admin Interface
+
+### Custom Admin Views
 - Enhanced product management
-- Order processing dashboard
+- Order processing interface
+- Customer management
 - Inventory tracking
 - Custom filters and actions
 
-### 📧 Communication
-- Asynchronous email notification system
-- Customer alerts and order updates
-- Scheduled notifications via Celery Beat
+## 9. Background Tasks
 
-### 🔍 Testing
-- Comprehensive unit and integration tests
-- API endpoint testing
-- Authentication flow validation
-- Order process verification
+### Celery Tasks
+- Email notifications
+- Order processing
+- Scheduled tasks
+- Customer notifications
 
-## 🛠️ Technical Stack
-- Django REST Framework
-- Redis for caching
-- Celery for task processing
-- JWT for authentication
+## 10. Security Features
+
+### Data Protection
+- Password validation
+- File upload validation
+- CSRF protection
+- Secure media handling
+
+### API Security
+- JWT token security
+- Permission-based access
+- Rate limiting
+- CORS configuration
+
+## 11. Development Tools
+
+### Debug Toolbar
+- SQL query debugging
+- Request/response inspection
+- Cache debugging
+- Signal tracking
+
+### Performance Monitoring
 - Locust for load testing
-- Silk for performance profiling
+- Silk for profiling (configured)
+- Redis monitoring
+- Database query optimization
+
+## 12. Email System
+
+### Email Configuration
+- SMTP setup
+- Email templates
+- Async email sending
+- Custom email backend
