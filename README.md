@@ -1,5 +1,3 @@
-# 🏗️ Project Architecture Overview
-
 ## 1. Market App (Main E-commerce Logic)
 
 ### Models and Database Structure
